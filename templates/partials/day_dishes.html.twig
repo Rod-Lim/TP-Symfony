@@ -1,0 +1,13 @@
+<h2>Plats du jour :</h2>
+{% for dish in dishes %}
+    <li>
+        <img src="{{ dish.image }}" alt="{{ dish.name }}"/>
+        {{ dish.name }} {{ dish.price }}€ | {{ dish.calories }} cal.
+        {% if dish.allergens is not empty %}
+            | Allergènes :
+            {% for allergen in dish.allergens %}
+                {{ allergen.name }},
+            {% endfor %}
+        {% endif %}
+    </li>
+{% endfor %}

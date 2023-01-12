@@ -57,12 +57,15 @@ class DishRepository extends ServiceEntityRepository
     {
         $entityManager = $this->getEntityManager();
 
-        $query = $entityManager->createQuery(
-            'SELECT d
-            FROM App\Entity\Dish d
-            WHERE d.category = :category
-            AND d.sticky = 1'
-        )->setParameter('category', $category);
+        $query = $entityManager->createQueryBuilder()
+            ->select('d')
+            ->from(Dish::class, 'd')
+            ->where('d.category = :category')
+            ->andWhere('d.Sticky = 1')
+            ->orderBy('d.id', 'DESC')
+            ->setMaxResults($limit)
+            ->setParameter('category', $category)
+            ->getQuery();
 
         // returns an array of Product objects
         return $query->getResult();

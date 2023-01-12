@@ -4,4 +4,7 @@
 
 {% block body %}
     <h1>Ceci est l'accueil.</h1>
+    {{ render(controller(
+        'App\\Controller\\BlockController::dayDishesAction', {max: 5}
+    )) }}
 {% endblock %}

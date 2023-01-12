@@ -2,17 +2,23 @@
 
 namespace App\Controller;
 
+use App\Repository\DishRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BlockController extends AbstractController
 {
-    //#[Route('/block', name: 'day_dishes')]
-    public function dayDishes(): Response
+    public function dayDishesAction(DishRepository $dishRepository,int $max = 3): Response
     {
-        return $this->render('block/index.html.twig', [
-            'controller_name' => 'BlockController',
-        ]);
+        $category = 1;
+
+        $dishes = $dishRepository->findStickies($category,$max);
+        return $this->render(
+            'Partials/day_dishes.html.twig',
+            array('dishes' => $dishes)
+        );
     }
 }
