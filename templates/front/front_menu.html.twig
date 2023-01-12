@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Menu{% endblock %}
+
+{% block body %}
+    <div>
+        <h1>Catégories de plats :</h1>
+        <ul>
+            {% for category in count %}
+                <li>
+                    <a href="/carte/{{ category.id }}">{{ category.Name }}</a> : {{ category.nbDishes }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
