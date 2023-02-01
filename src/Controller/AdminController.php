@@ -69,7 +69,6 @@ class AdminController extends AbstractController
                 }
             }
         }
-
         return $this->redirect('../carte');
     }
 }
